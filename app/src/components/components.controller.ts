@@ -6,7 +6,7 @@ import { CreateComponentDto } from './dto/create-component.dto'
 export class ComponentsController {
   constructor(private componentsService: ComponentsService) {}
 
-  @Post('/components/create')
+  @Post('/components')
   async addComponent(
     @Res() res,
     @Body() createComponentDto: CreateComponentDto,

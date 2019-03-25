@@ -1,7 +1,8 @@
 import * as mongoose from 'mongoose'
 
 export const ComponentSchema = new mongoose.Schema({
-  type: String,
+  name: String,
+  plexid: String,
   props: Object,
   created: {
     type: Date,
