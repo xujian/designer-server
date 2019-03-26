@@ -8,7 +8,7 @@ export class ComponentsController {
   constructor(private service: ComponentsService) {}
 
   @Post('/components')
-  async addComponent(@Res() res, @Body() dto: CreateComponentDto) {
+  async add(@Res() res, @Body() dto: CreateComponentDto) {
     const component = await this.service.create(dto)
     return res.status(HttpStatus.OK).json({
       message: 'Component created',
@@ -17,16 +17,16 @@ export class ComponentsController {
   }
 
   @Post('/components/:uuid')
-  async updateComponent(
+  async modify(
     @Res() res,
     @Param('uuid') uuid,
     @Body() dto: UpdateComponentDto) {
-    const component = await this.service.update(
+    const doc = await this.service.update(
       uuid,
       dto)
     return res.status(HttpStatus.OK).json({
       message: 'Component updated',
-      component,
+      doc,
     })
   }
   /**
@@ -35,7 +35,7 @@ export class ComponentsController {
    * @param plexid
    */
   @Get('/plexes/:plexid/components')
-  async getComponentsByPlexId(
+  async getByPlexId(
     @Res() res,
     @Param('plexid') plexid) {
     const components = await this.service.findByPlex(plexid)
